@@ -1377,26 +1377,27 @@
     /* Floral Side Slide-In Elements */
     .floral-slide-el {
       position: absolute;
-      width: 160px;
+      width: 140px;
       height: auto;
-      z-index: 4;
+      z-index: 100;
       pointer-events: none;
+      filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.15));
     }
 
     @media (min-width: 768px) {
       .floral-slide-el {
-        width: 240px;
+        width: 220px;
       }
     }
 
     .floral-slide-left {
-      left: -20px;
-      top: 10%;
+      left: 0;
+      top: 30px;
     }
 
     .floral-slide-right {
-      right: -20px;
-      top: 40%;
+      right: 0;
+      top: 30px;
     }
 
     .slide-in-left {
@@ -1774,7 +1775,10 @@
     <!-- ==========================================================================
        6. RSVP FORM SECTION
        ========================================================================== -->
-    <section id="rsvp" class="section-padding rsvp-section">
+    <section id="rsvp" class="section-padding rsvp-section" style="position: relative;">
+      <!-- Right Side Floral Slide-in Element -->
+      <img src="floral_side_right.png" alt="Floral Decoration" class="floral-slide-el floral-slide-right slide-in-right">
+
       <div class="container max-w-xl">
         <div class="rsvp-card-wrapper reveal-element">
           <div class="text-center">
