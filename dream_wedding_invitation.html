@@ -16,26 +16,26 @@
        1. DESIGN SYSTEM & CSS VARIABLES
        ========================================================================== */
     :root {
-      --bg-color: #120c1f;
-      --bg-card: rgba(28, 18, 42, 0.75);
-      --bg-card-alt: rgba(38, 24, 56, 0.7);
+      --bg-color: #fcf8f5;
+      --bg-card: rgba(255, 255, 255, 0.92);
+      --bg-card-alt: rgba(252, 246, 242, 0.9);
       
-      --text-main: #ffffff;
-      --text-muted: #f3e5f5;
-      --text-light: #e0d0e8;
+      --text-main: #3a2b35;
+      --text-muted: #6b5563;
+      --text-light: #947e8c;
       
       --accent-vibrant-pink: #ff69b4;
       --accent-bright-orange: #ff8c00;
-      --accent-candlelight-gold: #ffdf00;
+      --accent-candlelight-gold: #e6b800;
       --accent-blush: #ff69b4;
       --accent-peach: #ff8c00;
-      --accent-blush-dark: #e60073;
-      --accent-gold: #ffdf00;
+      --accent-blush-dark: #d81b60;
+      --accent-gold: #c59b27;
       --accent-gold-light: #fff3a0;
-      --accent-sage: #91a08d;
+      --accent-sage: #80967a;
       
-      --border-gold: rgba(255, 223, 0, 0.4);
-      --border-soft: rgba(255, 255, 255, 0.12);
+      --border-gold: rgba(230, 184, 0, 0.4);
+      --border-soft: rgba(58, 43, 53, 0.08);
       
       --shadow-sm: 0 4px 15px rgba(90, 75, 65, 0.04);
       --shadow-md: 0 10px 30px rgba(90, 75, 65, 0.08);
@@ -457,7 +457,7 @@
     .hero-video-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(18, 12, 31, 0.5) 0%, rgba(10, 6, 18, 0.75) 100%);
+      background: linear-gradient(180deg, rgba(252, 248, 245, 0.25) 0%, rgba(245, 235, 240, 0.4) 100%);
       z-index: 2;
       pointer-events: none;
     }
@@ -467,12 +467,12 @@
       width: 100%;
       margin: 0 auto;
       padding: 40px 20px;
-      background: rgba(20, 14, 32, 0.75);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border: 1px solid var(--border-gold);
       border-radius: var(--radius-lg);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 15px 40px rgba(58, 43, 53, 0.12);
       position: relative;
       z-index: 10;
     }
@@ -1316,13 +1316,13 @@
     <div class="video-container">
       <!-- Looping background video -->
       <video class="intro-loop-bg" autoplay loop muted playsinline>
-        <source src="NEW_WALAWWA_VIDEO.mp4" type="video/mp4">
+        <source src="Historic_colonial_mansion_waterc._202609060948.mp4" type="video/mp4">
       </video>
       <div class="intro-loop-overlay" id="intro-loop-overlay"></div>
 
       <!-- Main intro video -->
       <video id="intro-video" playsinline muted>
-        <source src="NEW_DOOR_VIDEO.mp4" type="video/mp4">
+        <source src="Watercolor_doors_opening_to_garden_202609060900.mp4" type="video/mp4">
         Your browser does not support video play.
       </video>
       
@@ -1372,7 +1372,7 @@
     <section id="hero" class="hero-section">
       <!-- Background Video for Hero Section -->
       <video class="hero-bg-video" autoplay loop muted playsinline>
-        <source src="NEW_WALAWWA_VIDEO.mp4" type="video/mp4">
+        <source src="Historic_colonial_mansion_waterc._202609060948.mp4" type="video/mp4">
       </video>
       <div class="hero-video-overlay"></div>
 
