@@ -227,6 +227,16 @@
       transition: opacity 0.5s ease;
     }
 
+    .door-poster-preview {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background: url('door_poster.jpg') center center / cover no-repeat;
+      z-index: 2;
+      transition: opacity 0.5s ease;
+    }
+
     .intro-loop-bg {
       position: absolute;
       inset: 0;
@@ -1320,8 +1330,11 @@
       </video>
       <div class="intro-loop-overlay" id="intro-loop-overlay"></div>
 
-      <!-- Main intro video -->
-      <video id="intro-video" playsinline muted>
+      <!-- Door 1st frame static poster preview background -->
+      <div class="door-poster-preview" id="door-poster-preview"></div>
+
+      <!-- Main intro video with poster -->
+      <video id="intro-video" playsinline muted poster="door_poster.jpg">
         <source src="Watercolor_doors_opening_to_garden_202609060900.mp4" type="video/mp4">
         Your browser does not support video play.
       </video>
@@ -1828,6 +1841,9 @@
           
           introVideo.style.opacity = '1';
           
+          const posterPreview = document.getElementById('door-poster-preview');
+          if (posterPreview) posterPreview.style.opacity = '0';
+
           const captionBox = document.querySelector('.intro-caption-box');
           if (captionBox) captionBox.style.opacity = '0';
           
