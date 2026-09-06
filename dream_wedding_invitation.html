@@ -541,18 +541,22 @@
     }
 
     .hero-container {
-      max-width: 800px;
       width: 100%;
-      margin: 0 auto;
-      padding: 35px 15px;
-      background: rgba(255, 255, 255, 0.92);
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      background: var(--bg-card); /* full screen background */
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      border: 1px solid var(--border-gold);
-      border-radius: var(--radius-lg);
-      box-shadow: 0 15px 40px rgba(58, 43, 53, 0.12);
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
       position: relative;
       z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
     }
 
     .floral-crest-wrapper {
@@ -1566,41 +1570,41 @@
       </video>
       <div class="hero-video-overlay"></div>
 
-      <div class="hero-container reveal-element" style="padding-top: 0; overflow: hidden;">
+      <div class="hero-container reveal-element">
         
         <!-- Couple Image at the top of the card -->
-        <div class="hero-couple-wrapper" style="width: 100%; height: 280px; margin-bottom: 25px; border-bottom: 2px solid var(--border-gold);">
-          <img src="story_photo.jpg" alt="Couple" style="width: 100%; height: 100%; object-fit: cover; border-top-left-radius: var(--radius-lg); border-top-right-radius: var(--radius-lg);">
+        <div class="hero-couple-wrapper" style="width: 100%; height: 35vh; min-height: 250px; margin-bottom: 2vh;">
+          <img src="story_photo.jpg" alt="Couple" style="width: 100%; height: 100%; object-fit: cover;">
         </div>
 
-        <p style="font-family: var(--font-body); font-weight: 700; letter-spacing: 2px; font-size: 0.9rem; margin-top: 15px; margin-bottom: 5px; text-transform: uppercase;">WITH LOVE AND JOY</p>
+        <p style="font-family: var(--font-body); font-weight: 700; letter-spacing: 2px; font-size: clamp(0.7rem, 1.8vh, 0.9rem); margin: 0 0 1vh 0; text-transform: uppercase;">WITH LOVE AND JOY</p>
         
-        <div id="guest-greeting-container" style="display: none; margin: 10px 0;">
-          <h2 style="font-family: var(--font-heading); color: var(--text-main); font-size: 2.2rem; margin: 0; font-weight: bold;"><span id="guest-greeting-name"></span></h2>
+        <div id="guest-greeting-container" style="display: none; margin: 1vh 0;">
+          <h2 style="font-family: var(--font-heading); color: #8c1c40; font-size: clamp(1.8rem, 4.5vh, 2.8rem); margin: 0; font-weight: bold;"><span id="guest-greeting-name"></span></h2>
         </div>
 
-        <p class="hero-subheading" style="margin-top: 10px; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase;">TOGETHER WITH THEIR FAMILIES</p>
+        <p class="hero-subheading" style="margin: 0; font-size: clamp(0.6rem, 1.5vh, 0.8rem); letter-spacing: 2px; text-transform: uppercase;">TOGETHER WITH THEIR FAMILIES</p>
         
-        <p class="hero-invitation-text" style="font-size: 0.95rem; margin-top: 30px; line-height: 1.8; letter-spacing: 1px; text-transform: uppercase;">
+        <p class="hero-invitation-text" style="font-size: clamp(0.7rem, 1.8vh, 0.9rem); margin: 2.5vh 0; line-height: 1.6; letter-spacing: 1px; text-transform: uppercase;">
           REQUEST THE HONOUR OF YOUR PRESENCE<br>
           AS THEY CELEBRATE THE BEGINNING<br>
           OF THEIR BEAUTIFUL JOURNEY TOGETHER
         </p>
 
-        <h1 class="hero-title" style="margin: 40px 0; font-size: 3.8rem; line-height: 1.1;">Wameesha <br><span class="ampersand" style="font-size: 3rem; display: block; margin: 15px 0;">&amp;</span> Suraj</h1>
+        <h1 class="hero-title" style="margin: 1vh 0; font-size: clamp(2.8rem, 7vh, 4rem); line-height: 1;">Wameesha <br><span class="ampersand" style="font-size: clamp(2rem, 5vh, 3rem); display: block; margin: 0.5vh 0;">&amp;</span> Suraj</h1>
         
-        <div class="hero-details" style="display: flex; flex-direction: column; align-items: center; margin-top: 40px;">
-          <div class="hero-detail-item" style="text-align: center; width: 100%; margin-bottom: 25px;">
-            <span class="detail-value" style="font-size: 1.15rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600;">JANUARY 28, 2027</span>
+        <div class="hero-details" style="display: flex; flex-direction: column; align-items: center; margin-top: 3vh;">
+          <div class="hero-detail-item" style="text-align: center; width: 100%; margin-bottom: 1.5vh;">
+            <span class="detail-value" style="font-size: clamp(0.9rem, 2vh, 1.15rem); letter-spacing: 2px; text-transform: uppercase; font-weight: 600; color: var(--text-main);">JANUARY 28, 2027</span>
           </div>
           
           <div class="hero-detail-item" style="text-align: center; width: 100%;">
-            <span class="detail-value" style="font-size: 1.15rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600;">THE GRAND WALAWWA<br>KEGALLE</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=The+Grand+Walawwa,+Kegalle" target="_blank" class="map-link-btn" style="display: inline-block; margin-top: 20px; padding: 12px 30px; background: var(--accent-vibrant); color: white; border-radius: 25px; text-decoration: none; font-size: 0.9rem; font-weight: 600; box-shadow: 0 4px 15px rgba(216, 27, 96, 0.4); transition: var(--transition-smooth);">📍 Get Directions</a>
+            <span class="detail-value" style="font-size: clamp(0.9rem, 2vh, 1.15rem); letter-spacing: 2px; text-transform: uppercase; font-weight: 600; color: var(--text-main);">THE GRAND WALAWWA | KEGALLE</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=The+Grand+Walawwa,+Kegalle" target="_blank" class="map-link-btn" style="display: inline-block; margin-top: 1.5vh; padding: 10px 25px; background: var(--accent-vibrant); color: white; border-radius: 25px; text-decoration: none; font-size: clamp(0.75rem, 1.6vh, 0.9rem); font-weight: 600; box-shadow: 0 4px 15px rgba(216, 27, 96, 0.4); transition: var(--transition-smooth);">📍 Get Directions</a>
           </div>
         </div>
 
-        <p class="hero-subheading" style="margin-top: 45px; margin-bottom: 20px; font-size: 0.85rem; line-height: 1.8; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600;">
+        <p class="hero-subheading" style="margin-top: 4vh; margin-bottom: 3vh; font-size: clamp(0.65rem, 1.6vh, 0.85rem); line-height: 1.6; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600;">
           YOUR PRESENCE WILL MAKE<br>OUR SPECIAL DAY COMPLETE.
         </p>
       </div>
