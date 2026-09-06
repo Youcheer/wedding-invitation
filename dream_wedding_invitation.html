@@ -1509,13 +1509,13 @@
   <div id="video-intro-overlay" class="video-overlay">
     <div class="video-container">
       <!-- Looping background video -->
-      <video class="intro-loop-bg" autoplay loop muted playsinline style="filter: none; transform: none;">
+      <video class="intro-loop-bg" autoplay loop muted playsinline preload="auto" style="filter: none; transform: none;">
         <source src="Pink_roses_and_peach_peonies_202609062345.mp4" type="video/mp4">
       </video>
       <div class="intro-loop-overlay" id="intro-loop-overlay" style="background: rgba(0, 0, 0, 0.25);"></div>
 
       <!-- Main intro door video -->
-      <video id="intro-video" playsinline muted>
+      <video id="intro-video" playsinline muted preload="auto">
         <source src="Watercolor_doors_opening_to_garden_202609060900.mp4" type="video/mp4">
         Your browser does not support video play.
       </video>
@@ -1561,7 +1561,7 @@
        ========================================================================== -->
     <section id="hero" class="hero-section">
       <!-- Background Video for Hero Section -->
-      <video class="hero-bg-video" autoplay loop muted playsinline>
+      <video class="hero-bg-video" autoplay loop muted playsinline preload="auto">
         <source src="Historic_colonial_mansion_waterc._202609060948.mp4" type="video/mp4">
       </video>
       <div class="hero-video-overlay"></div>
@@ -2066,6 +2066,14 @@
 
       // Initialize Falling Petals Engine
       new FallingRosePetalEngine('anti-gravity-canvas');
+
+      // Force background videos to play on mobile
+      document.querySelectorAll('video[autoplay]').forEach(v => {
+        const playPromise = v.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(e => console.log("Autoplay prevented on load: ", e));
+        }
+      });
 
       /* ------------------------------------------------------------------------
          B. VIDEO INTRO OVERLAY LOGIC (Play on Click, No Autoplay)
