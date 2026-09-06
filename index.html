@@ -300,23 +300,28 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      width: 290px;
-      height: 290px;
-      padding: 25px 20px;
-      background: linear-gradient(135deg, #d81b60 0%, #ad1457 100%);
+      width: 78%;
+      max-width: 320px;
+      height: 72vh;
+      max-height: 540px;
+      padding: 30px 20px;
+      background: rgba(216, 27, 96, 0.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       border: 3.5px solid #ffffff;
       border-radius: 4px;
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
       cursor: pointer;
+      text-align: center;
       transition: var(--transition-smooth);
       animation: pulseCard 3s infinite ease-in-out;
     }
 
     @media (min-width: 768px) {
       .save-date-card {
-        width: 340px;
-        height: 340px;
-        padding: 35px 30px;
+        width: 360px;
+        height: 560px;
+        padding: 40px 30px;
       }
     }
 
