@@ -191,7 +191,7 @@
       position: fixed;
       inset: 0;
       z-index: 99999;
-      background-color: #1a1614;
+      background-color: #2b1e28;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -1822,8 +1822,8 @@
         }
       }
 
-      if (playVideoBtn && introVideo) {
-        playVideoBtn.addEventListener('click', () => {
+      if (playTriggerWrapper && introVideo) {
+        playTriggerWrapper.addEventListener('click', () => {
           playTriggerWrapper.classList.add('hidden');
           
           introVideo.style.opacity = '1';
@@ -1837,9 +1837,16 @@
           const loopBg = document.querySelector('.intro-loop-bg');
           if (loopBg) loopBg.style.opacity = '0';
 
-          introVideo.play().catch(err => {
-            console.log("Play failed: ", err);
-          });
+          introVideo.currentTime = 0;
+          const playPromise = introVideo.play();
+          if (playPromise !== undefined) {
+            playPromise.then(() => {
+              console.log("Intro video playing successfully");
+            }).catch(err => {
+              console.log("Play failed: ", err);
+              // Fallback: un-mute if needed or close on error
+            });
+          }
         });
       }
 
