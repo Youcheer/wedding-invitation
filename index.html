@@ -1382,8 +1382,8 @@
       <span class="music-pulse"></span>
     </button>
     
-    <audio id="bg-music" loop preload="none">
-      <source src="https://assets.mixkit.co/music/preview/mixkit-romantic-wedding-piano-1064.mp3" type="audio/mpeg">
+    <audio id="bg-music" loop preload="auto">
+      <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=wedding-romantic-piano-cinematic-113578.mp3" type="audio/mpeg">
     </audio>
 
     <!-- ==========================================================================
@@ -1886,8 +1886,16 @@
               console.log("Intro video playing successfully");
             }).catch(err => {
               console.log("Play failed: ", err);
-              // Fallback: un-mute if needed or close on error
             });
+          }
+
+          // Auto play background music on user gesture
+          const bgMusic = document.getElementById('bg-music');
+          const musicBtn = document.getElementById('music-toggle');
+          if (bgMusic) {
+            bgMusic.play().then(() => {
+              if (musicBtn) musicBtn.classList.add('playing');
+            }).catch(err => console.log("Music play blocked: ", err));
           }
         });
       }
