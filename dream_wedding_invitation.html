@@ -1573,30 +1573,36 @@
           <img src="story_photo.jpg" alt="Couple" style="width: 100%; height: 100%; object-fit: cover; border-top-left-radius: var(--radius-lg); border-top-right-radius: var(--radius-lg);">
         </div>
 
-        <div id="guest-greeting-container" style="display: none; margin-bottom: 15px; padding: 10px; background: rgba(255, 255, 255, 0.5); border-radius: 8px;">
-          <h2 style="font-family: var(--font-heading); color: var(--accent-vibrant); font-size: 1.8rem; margin: 0; font-weight: bold;">For: <span id="guest-greeting-name"></span></h2>
+        <p style="font-family: var(--font-body); font-weight: 700; letter-spacing: 2px; font-size: 0.9rem; margin-top: 15px; margin-bottom: 5px; text-transform: uppercase;">WITH LOVE AND JOY</p>
+        
+        <div id="guest-greeting-container" style="display: none; margin: 10px 0;">
+          <h2 style="font-family: var(--font-heading); color: var(--text-main); font-size: 2.2rem; margin: 0; font-weight: bold;"><span id="guest-greeting-name"></span></h2>
         </div>
 
-        <p class="hero-subheading" style="margin-top: 10px;">Together with their families</p>
-        <h1 class="hero-title">Wameesha <span class="ampersand">&amp;</span> Suraj</h1>
-        <p class="hero-invitation-text">Invite you to celebrate their wedding</p>
+        <p class="hero-subheading" style="margin-top: 10px; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase;">TOGETHER WITH THEIR FAMILIES</p>
+        
+        <p class="hero-invitation-text" style="font-size: 0.95rem; margin-top: 30px; line-height: 1.8; letter-spacing: 1px; text-transform: uppercase;">
+          REQUEST THE HONOUR OF YOUR PRESENCE<br>
+          AS THEY CELEBRATE THE BEGINNING<br>
+          OF THEIR BEAUTIFUL JOURNEY TOGETHER
+        </p>
 
-        <div class="gold-divider">
-          <span class="diamond">◆</span>
-        </div>
-
-        <div class="hero-details">
-          <div class="hero-detail-item">
-            <span class="detail-label">DATE</span>
-            <span class="detail-value">January 28, 2027</span>
+        <h1 class="hero-title" style="margin: 40px 0; font-size: 3.8rem; line-height: 1.1;">Wameesha <br><span class="ampersand" style="font-size: 3rem; display: block; margin: 15px 0;">&amp;</span> Suraj</h1>
+        
+        <div class="hero-details" style="display: flex; flex-direction: column; align-items: center; margin-top: 40px;">
+          <div class="hero-detail-item" style="text-align: center; width: 100%; margin-bottom: 25px;">
+            <span class="detail-value" style="font-size: 1.15rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600;">JANUARY 28, 2027</span>
           </div>
-          <div class="hero-detail-divider"></div>
-          <div class="hero-detail-item">
-            <span class="detail-label">LOCATION</span>
-            <span class="detail-value">The Grand Walawwa | Kegalle</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=The+Grand+Walawwa,+Kegalle" target="_blank" class="map-link-btn" style="display: inline-block; margin-top: 15px; padding: 10px 25px; background: var(--accent-vibrant); color: white; border-radius: 25px; text-decoration: none; font-size: 0.9rem; font-weight: 600; box-shadow: 0 4px 15px rgba(216, 27, 96, 0.4); transition: var(--transition-smooth);">📍 Get Directions</a>
+          
+          <div class="hero-detail-item" style="text-align: center; width: 100%;">
+            <span class="detail-value" style="font-size: 1.15rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600;">THE GRAND WALAWWA<br>KEGALLE</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=The+Grand+Walawwa,+Kegalle" target="_blank" class="map-link-btn" style="display: inline-block; margin-top: 20px; padding: 12px 30px; background: var(--accent-vibrant); color: white; border-radius: 25px; text-decoration: none; font-size: 0.9rem; font-weight: 600; box-shadow: 0 4px 15px rgba(216, 27, 96, 0.4); transition: var(--transition-smooth);">📍 Get Directions</a>
           </div>
         </div>
+
+        <p class="hero-subheading" style="margin-top: 45px; margin-bottom: 20px; font-size: 0.85rem; line-height: 1.8; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600;">
+          YOUR PRESENCE WILL MAKE<br>OUR SPECIAL DAY COMPLETE.
+        </p>
       </div>
     </section>
 
@@ -1871,16 +1877,7 @@
               </div>
             </div>
 
-            <!-- Number of Guests -->
-            <div id="guests-selection-group" class="form-group">
-              <label for="guest-count" class="form-label">Number of Guests</label>
-              <select id="guest-count" name="guestCount" class="form-select">
-                <option value="1">1 Guest</option>
-                <option value="2" selected>2 Guests</option>
-                <option value="3">3 Guests</option>
-                <option value="4">4 Guests</option>
-              </select>
-            </div>
+
 
             <!-- Dietary Restrictions -->
             <div class="form-group">
