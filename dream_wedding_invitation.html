@@ -1697,13 +1697,23 @@
           this.particles = [];
           this.particleCount = window.innerWidth < 768 ? 35 : 70;
           
-          // Preload Rose Petal Image
-          this.petalImg = new Image();
-          this.petalImg.src = 'rose_petal.png';
+          // Preload Both Rose Petal Images (Rose_1.png & Rose_2.png)
+          this.petalImages = [];
+          const imgSources = ['Rose_1.png', 'Rose_2.png'];
+          let loadedCount = 0;
+
+          imgSources.forEach((src) => {
+            const img = new Image();
+            img.src = src;
+            img.onload = () => {
+              loadedCount++;
+              if (loadedCount === imgSources.length) {
+                this.imgLoaded = true;
+              }
+            };
+            this.petalImages.push(img);
+          });
           this.imgLoaded = false;
-          this.petalImg.onload = () => {
-            this.imgLoaded = true;
-          };
 
           // Hex Color Palette for glowing dust/pollen
           this.colors = [
@@ -1734,21 +1744,23 @@
 
         createParticle(randomY = false) {
           const isPetal = Math.random() > 0.35; // 65% Rose Petal Image, 35% Glowing Dust
-          const size = isPetal ? Math.random() * 22 + 14 : Math.random() * 2.5 + 0.8;
+          const size = isPetal ? Math.random() * 24 + 16 : Math.random() * 2.5 + 0.8;
+          const imageIndex = Math.floor(Math.random() * this.petalImages.length);
 
           return {
             x: Math.random() * this.canvas.width,
             y: randomY ? Math.random() * this.canvas.height : -30 - Math.random() * 50,
             size: size,
+            imageIndex: imageIndex,
             colorPrefix: this.colors[Math.floor(Math.random() * this.colors.length)],
             baseAlpha: isPetal ? Math.random() * 0.4 + 0.6 : Math.random() * 0.65 + 0.35,
             alpha: 0,
-            speedY: isPetal ? Math.random() * 1.2 + 0.6 : Math.random() * 0.7 + 0.3, // Falling speed
+            speedY: isPetal ? Math.random() * 1.3 + 0.6 : Math.random() * 0.7 + 0.3, // Falling speed
             swaySpeed: Math.random() * 0.02 + 0.008,
-            swayAmplitude: Math.random() * 2.2 + 0.8,
+            swayAmplitude: Math.random() * 2.4 + 0.8,
             swayAngle: Math.random() * Math.PI * 2,
             rotation: Math.random() * Math.PI * 2,
-            rotationSpeed: (Math.random() - 0.5) * 0.03,
+            rotationSpeed: (Math.random() - 0.5) * 0.035,
             isPetal: isPetal
           };
         }
@@ -1784,15 +1796,16 @@
               this.particles[i] = this.createParticle(false);
             }
 
-            // Render Rose Petal Image vs Glowing Dust
+            // Render Rose Petal Images vs Glowing Dust
             this.ctx.save();
             this.ctx.translate(p.x, p.y);
             this.ctx.rotate(p.rotation);
             this.ctx.globalAlpha = Math.max(0, p.alpha);
 
             if (p.isPetal && this.imgLoaded) {
-              // Draw realistic Rose Petal PNG
-              this.ctx.drawImage(this.petalImg, -p.size / 2, -p.size / 2, p.size, p.size);
+              // Draw Rose_1.png or Rose_2.png
+              const img = this.petalImages[p.imageIndex];
+              this.ctx.drawImage(img, -p.size / 2, -p.size / 2, p.size, p.size);
             } else {
               // Draw glowing pollen/sparkle dust
               this.ctx.beginPath();
