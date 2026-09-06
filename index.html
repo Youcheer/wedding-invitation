@@ -1931,12 +1931,43 @@
       // Personalization via URL parameter (e.g. ?name=GuestName)
       const urlParams = new URLSearchParams(window.location.search);
       const guestName = urlParams.get('name') || urlParams.get('guest');
+      
+      const rsvpForm = document.getElementById('rsvp-form');
+      const fullNameInput = document.getElementById('full-name');
+
       if (guestName) {
         const greetingEl = document.getElementById('guest-greeting-name');
         const containerEl = document.getElementById('guest-greeting-container');
         if (greetingEl && containerEl) {
           greetingEl.textContent = guestName;
           containerEl.style.display = 'block';
+        }
+        
+        if (fullNameInput) {
+          fullNameInput.value = guestName;
+          fullNameInput.readOnly = true;
+          fullNameInput.style.pointerEvents = 'none';
+          fullNameInput.style.backgroundColor = 'rgba(0,0,0,0.02)';
+        }
+      } else {
+        if (rsvpForm) {
+          // Disable form if no name provided to prevent uninvited RSVPs
+          const elements = rsvpForm.querySelectorAll('input, select, textarea, button');
+          elements.forEach(el => {
+            el.disabled = true;
+            el.style.opacity = '0.6';
+            el.style.cursor = 'not-allowed';
+          });
+          
+          if (fullNameInput) {
+            fullNameInput.placeholder = "Personalized Invitation Required";
+          }
+          
+          const submitBtn = document.getElementById('submit-rsvp-btn');
+          if (submitBtn) {
+            const btnText = submitBtn.querySelector('.btn-text');
+            if (btnText) btnText.textContent = "INVITATION ONLY";
+          }
         }
       }
 
