@@ -1573,6 +1573,10 @@
           <img src="story_photo.jpg" alt="Couple" style="width: 100%; height: 100%; object-fit: cover; border-top-left-radius: var(--radius-lg); border-top-right-radius: var(--radius-lg);">
         </div>
 
+        <div id="guest-greeting-container" style="display: none; margin-bottom: 15px; padding: 10px; background: rgba(255, 255, 255, 0.5); border-radius: 8px;">
+          <h2 style="font-family: var(--font-heading); color: var(--accent-vibrant); font-size: 1.8rem; margin: 0; font-weight: bold;">For: <span id="guest-greeting-name"></span></h2>
+        </div>
+
         <p class="hero-subheading" style="margin-top: 10px;">Together with their families</p>
         <h1 class="hero-title">Wameesha <span class="ampersand">&amp;</span> Suraj</h1>
         <p class="hero-invitation-text">Invite you to celebrate their wedding</p>
@@ -1924,6 +1928,18 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
 
+      // Personalization via URL parameter (e.g. ?name=GuestName)
+      const urlParams = new URLSearchParams(window.location.search);
+      const guestName = urlParams.get('name') || urlParams.get('guest');
+      if (guestName) {
+        const greetingEl = document.getElementById('guest-greeting-name');
+        const containerEl = document.getElementById('guest-greeting-container');
+        if (greetingEl && containerEl) {
+          greetingEl.textContent = guestName;
+          containerEl.style.display = 'block';
+        }
+      }
+
       /* ------------------------------------------------------------------------
          A. ANTI-GRAVITY FLOATING PARTICLE ENGINE (Peach, Blush, Gold, Warm White)
          ------------------------------------------------------------------------ */
@@ -1933,7 +1949,7 @@
           if (!this.canvas) return;
           this.ctx = this.canvas.getContext('2d');
           this.particles = [];
-          this.particleCount = window.innerWidth < 768 ? 35 : 70;
+          this.particleCount = window.innerWidth < 768 ? 15 : 30;
           
           // Preload Both Rose Petal Images (Rose_1.png & Rose_2.png)
           this.petalImages = [];
@@ -1982,7 +1998,7 @@
 
         createParticle(randomY = false) {
           const isPetal = Math.random() > 0.35; // 65% Rose Petal Image, 35% Glowing Dust
-          const size = isPetal ? Math.random() * 24 + 16 : Math.random() * 2.5 + 0.8;
+          const size = isPetal ? Math.random() * 10 + 10 : Math.random() * 2.5 + 0.8;
           const imageIndex = Math.floor(Math.random() * this.petalImages.length);
 
           return {
