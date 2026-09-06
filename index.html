@@ -25,7 +25,7 @@
       --text-light: #ab9c90;
       
       --accent-blush: #e8c5c8;
-      --accent-blush-light: #f9ecee;
+      --accent-peach: #f4c2c2;
       --accent-blush-dark: #d89fa3;
       --accent-gold: #c5a059;
       --accent-gold-light: #f5eaae;
@@ -77,7 +77,7 @@
     }
 
     /* ==========================================================================
-       ANTI-GRAVITY FLOATING PARTICLE CANVAS STYLES
+       ANTI-GRAVITY FLOATING CANVAS STYLES (z-index: 5, pointer-events: none)
        ========================================================================== */
     #anti-gravity-canvas {
       position: fixed;
@@ -85,13 +85,13 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      pointer-events: none; /* Allows clicks to pass through freely */
-      z-index: 1;           /* Positioned behind content cards, above base background */
+      pointer-events: none; /* Allows 100% of user clicks to pass through */
+      z-index: 5;           /* Floating magical particles sit above background elements */
     }
 
     .main-wrapper {
       position: relative;
-      z-index: 2;           /* Content sits cleanly above particle canvas */
+      z-index: 10;          /* Content cards sit interactively on top */
     }
 
     /* Typography */
@@ -410,7 +410,7 @@
       position: relative;
       padding: 60px 20px 80px 20px;
       text-align: center;
-      background: linear-gradient(180deg, rgba(253, 250, 246, 0.85) 0%, rgba(249, 243, 236, 0.85) 100%);
+      background: linear-gradient(180deg, rgba(253, 250, 246, 0.88) 0%, rgba(249, 243, 236, 0.88) 100%);
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -422,7 +422,7 @@
       width: 100%;
       margin: 0 auto;
       padding: 40px 20px;
-      background: rgba(255, 255, 255, 0.75);
+      background: rgba(255, 255, 255, 0.8);
       backdrop-filter: blur(12px);
       border: 1px solid var(--border-gold);
       border-radius: var(--radius-lg);
@@ -587,7 +587,7 @@
        4. COUNTDOWN TIMER SECTION
        ========================================================================== */
     .countdown-section {
-      background-color: rgba(252, 248, 244, 0.85);
+      background-color: rgba(252, 248, 244, 0.88);
       border-top: 1px solid var(--border-soft);
       border-bottom: 1px solid var(--border-soft);
     }
@@ -786,7 +786,7 @@
        6. INFO SECTIONS (DRESS CODE & GETTING THERE)
        ========================================================================== */
     .info-section {
-      background: linear-gradient(180deg, rgba(253, 250, 246, 0.85) 0%, rgba(247, 241, 234, 0.85) 100%);
+      background: linear-gradient(180deg, rgba(253, 250, 246, 0.88) 0%, rgba(247, 241, 234, 0.88) 100%);
     }
 
     .info-grid {
@@ -1258,7 +1258,7 @@
 <body class="no-scroll">
 
   <!-- ==========================================================================
-     ANTI-GRAVITY BACKGROUND CANVAS
+     ANTI-GRAVITY BACKGROUND CANVAS (z-index: 5, pointer-events: none)
      ========================================================================== -->
   <canvas id="anti-gravity-canvas"></canvas>
 
@@ -1268,6 +1268,7 @@
   <div id="video-intro-overlay" class="video-overlay">
     <div class="video-container">
       <video id="intro-video" playsinline muted poster="grand_walawwa.png">
+        <source src="Historic_colonial_mansion_waterc…_202609060948.mp4" type="video/mp4">
         <source src="Watercolor_doors_opening_to_garden_202609060900.mp4" type="video/mp4">
         Your browser does not support video play.
       </video>
@@ -1480,10 +1481,10 @@
               <div class="color-palette-box">
                 <span class="palette-label">Suggested Palette:</span>
                 <div class="swatches">
+                  <span class="swatch" style="background: #f4c2c2;" title="Peach Pink"></span>
                   <span class="swatch" style="background: #e8c5c8;" title="Blush Pink"></span>
                   <span class="swatch" style="background: #91a08d;" title="Sage Green"></span>
-                  <span class="swatch" style="background: #c5a059;" title="Soft Gold"></span>
-                  <span class="swatch" style="background: #d89fa3;" title="Dusty Rose"></span>
+                  <span class="swatch" style="background: #f5eaae;" title="Soft Gold"></span>
                   <span class="swatch" style="background: #5a4b41;" title="Espresso"></span>
                 </div>
               </div>
@@ -1620,7 +1621,7 @@
     document.addEventListener('DOMContentLoaded', () => {
 
       /* ------------------------------------------------------------------------
-         A. ANTI-GRAVITY FLOATING PARTICLE ENGINE (60FPS Canvas Animation)
+         A. ANTI-GRAVITY FLOATING PARTICLE ENGINE (Peach, Blush, Gold, Warm White)
          ------------------------------------------------------------------------ */
       class AntiGravityParticleEngine {
         constructor(canvasId) {
@@ -1628,12 +1629,14 @@
           if (!this.canvas) return;
           this.ctx = this.canvas.getContext('2d');
           this.particles = [];
-          this.particleCount = window.innerWidth < 768 ? 40 : 75;
+          this.particleCount = window.innerWidth < 768 ? 45 : 90;
+          
+          // Hex Color Palette: Peach/Blush Pink (#f4c2c2, #e8c5c8), Soft Gold (#f5eaae), Warm White (#fdfaf6)
           this.colors = [
-            'rgba(197, 160, 89, ',  // Gold #c5a059
-            'rgba(245, 234, 174, ', // Light Gold #f5eaae
+            'rgba(244, 194, 194, ', // Peach Pink #f4c2c2
             'rgba(232, 197, 200, ', // Blush Pink #e8c5c8
-            'rgba(216, 159, 163, '  // Deep Blush #d89fa3
+            'rgba(245, 234, 174, ', // Soft Gold #f5eaae
+            'rgba(253, 250, 246, '  // Warm White #fdfaf6
           ];
 
           this.init();
@@ -1656,19 +1659,23 @@
         }
 
         createParticle(randomY = false) {
-          const radius = Math.random() * 2.8 + 1.2;
+          const isPetal = Math.random() > 0.55; // 45% floral petals, 55% pollen/dust
+          const radius = isPetal ? Math.random() * 2.6 + 1.8 : Math.random() * 2.0 + 0.7;
+
           return {
             x: Math.random() * this.canvas.width,
-            y: randomY ? Math.random() * this.canvas.height : this.canvas.height + Math.random() * 25,
+            y: randomY ? Math.random() * this.canvas.height : this.canvas.height + Math.random() * 30,
             radius: radius,
             colorPrefix: this.colors[Math.floor(Math.random() * this.colors.length)],
-            baseAlpha: Math.random() * 0.5 + 0.35,
+            baseAlpha: isPetal ? Math.random() * 0.45 + 0.35 : Math.random() * 0.65 + 0.35,
             alpha: 0,
-            speedY: Math.random() * 0.75 + 0.3,
-            swaySpeed: Math.random() * 0.02 + 0.008,
-            swayAmplitude: Math.random() * 1.5 + 0.5,
+            speedY: Math.random() * 0.7 + 0.25, // Upward floating speed
+            swaySpeed: Math.random() * 0.018 + 0.006,
+            swayAmplitude: Math.random() * 1.8 + 0.6,
             swayAngle: Math.random() * Math.PI * 2,
-            isPetal: Math.random() > 0.65
+            rotation: Math.random() * Math.PI * 2,
+            rotationSpeed: (Math.random() - 0.5) * 0.02,
+            isPetal: isPetal
           };
         }
 
@@ -1678,16 +1685,17 @@
           for (let i = 0; i < this.particles.length; i++) {
             const p = this.particles[i];
 
-            // Floating Anti-Gravity Movement (Bottom to Top)
+            // Upward Anti-Gravity Motion
             p.y -= p.speedY;
 
-            // Sine wave sway (Gentle magical breeze)
+            // Sine Wave Horizontal Sway (Light Breeze)
             p.swayAngle += p.swaySpeed;
-            p.x += Math.sin(p.swayAngle) * p.swayAmplitude * 0.4;
+            p.x += Math.sin(p.swayAngle) * p.swayAmplitude * 0.35;
+            p.rotation += p.rotationSpeed;
 
-            // Smooth Fade-in at Bottom & Fade-out at Top
+            // Smooth Fade-In at Bottom & Fade-Out at Top
             const bottomThreshold = this.canvas.height - 120;
-            const topThreshold = 120;
+            const topThreshold = 140;
 
             if (p.y > bottomThreshold) {
               p.alpha = ((this.canvas.height - p.y) / 120) * p.baseAlpha;
@@ -1697,37 +1705,43 @@
               p.alpha = p.baseAlpha;
             }
 
-            // Respawn particle at bottom when it floats past top
-            if (p.y < -20 || p.x < -20 || p.x > this.canvas.width + 20) {
+            // Respawn particle at bottom when reaching top
+            if (p.y < -20 || p.x < -30 || p.x > this.canvas.width + 30) {
               this.particles[i] = this.createParticle(false);
             }
 
-            // Draw Particle
+            // Render Particles (Soft Petals vs Glowing Dust)
+            this.ctx.save();
+            this.ctx.translate(p.x, p.y);
+            this.ctx.rotate(p.rotation);
+
             this.ctx.beginPath();
             this.ctx.fillStyle = `${p.colorPrefix}${Math.max(0, p.alpha)})`;
 
             if (p.isPetal) {
-              this.ctx.ellipse(p.x, p.y, p.radius * 1.5, p.radius * 0.8, p.swayAngle, 0, Math.PI * 2);
+              // Elongated Petal Shape
+              this.ctx.ellipse(0, 0, p.radius * 1.8, p.radius * 0.9, 0, 0, Math.PI * 2);
             } else {
-              this.ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+              // Glowing Pollen Dust Circle
+              this.ctx.arc(0, 0, p.radius, 0, Math.PI * 2);
             }
 
             this.ctx.fill();
 
-            // Glow Effect for larger particles
-            if (p.radius > 2.2) {
-              this.ctx.shadowBlur = 6;
-              this.ctx.shadowColor = p.colorPrefix + '0.5)';
-            } else {
-              this.ctx.shadowBlur = 0;
+            // Soft Glow effect for pollen dust
+            if (!p.isPetal && p.radius > 1.5) {
+              this.ctx.shadowBlur = 7;
+              this.ctx.shadowColor = p.colorPrefix + '0.7)';
             }
+
+            this.ctx.restore();
           }
 
           requestAnimationFrame(() => this.animate());
         }
       }
 
-      // Initialize Anti-Gravity Canvas System
+      // Initialize Engine
       new AntiGravityParticleEngine('anti-gravity-canvas');
 
       /* ------------------------------------------------------------------------
