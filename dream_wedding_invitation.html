@@ -334,36 +334,49 @@
 
     .intro-caption-box {
       position: absolute;
-      bottom: 60px;
+      bottom: 45px;
       left: 20px;
       right: 20px;
       text-align: center;
       color: #ffffff;
       z-index: 5;
+      background: rgba(18, 12, 24, 0.65);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 16px 20px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
       animation: fadeIn 1.2s ease-out;
       transition: opacity 0.5s ease;
     }
 
     .script-subtitle {
       font-family: var(--font-script);
-      font-size: 2rem;
-      color: var(--accent-blush);
+      font-size: 2.2rem;
+      color: #ff80bf;
       display: block;
-      margin-bottom: 5px;
+      margin-bottom: 2px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 0 12px rgba(255, 105, 180, 0.6);
+      font-weight: bold;
     }
 
     .intro-names {
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       color: #ffffff;
-      letter-spacing: 1px;
-      margin-bottom: 8px;
+      letter-spacing: 1.5px;
+      margin-bottom: 6px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+      font-weight: 700;
     }
 
     .intro-location {
       font-size: 0.85rem;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.85);
+      color: #fff3a0;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+      font-weight: 600;
     }
 
     .skip-btn {
