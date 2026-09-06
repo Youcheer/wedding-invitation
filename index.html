@@ -213,11 +213,35 @@
       box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
     }
 
-    .video-container video {
+    .video-container video#intro-video {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
+      position: relative;
+      z-index: 3;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .intro-loop-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      filter: blur(6px);
+      transform: scale(1.05);
+    }
+
+    .intro-loop-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 2;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
     }
 
     .video-gradient-overlay {
@@ -302,8 +326,9 @@
       right: 20px;
       text-align: center;
       color: #ffffff;
-      z-index: 2;
+      z-index: 5;
       animation: fadeIn 1.2s ease-out;
+      transition: opacity 0.5s ease;
     }
 
     .script-subtitle {
@@ -1286,7 +1311,14 @@
      ========================================================================== -->
   <div id="video-intro-overlay" class="video-overlay">
     <div class="video-container">
-      <video id="intro-video" playsinline muted poster="floral_header.png">
+      <!-- Looping background video -->
+      <video class="intro-loop-bg" autoplay loop muted playsinline>
+        <source src="Historic_colonial_mansion_waterc…_202609060948.mp4" type="video/mp4">
+      </video>
+      <div class="intro-loop-overlay" id="intro-loop-overlay"></div>
+
+      <!-- Main intro video -->
+      <video id="intro-video" playsinline muted>
         <source src="Watercolor_doors_opening_to_garden_202609060900.mp4" type="video/mp4">
         Your browser does not support video play.
       </video>
@@ -1790,6 +1822,18 @@
       if (playVideoBtn && introVideo) {
         playVideoBtn.addEventListener('click', () => {
           playTriggerWrapper.classList.add('hidden');
+          
+          introVideo.style.opacity = '1';
+          
+          const captionBox = document.querySelector('.intro-caption-box');
+          if (captionBox) captionBox.style.opacity = '0';
+          
+          const loopOverlay = document.getElementById('intro-loop-overlay');
+          if (loopOverlay) loopOverlay.style.opacity = '0';
+          
+          const loopBg = document.querySelector('.intro-loop-bg');
+          if (loopBg) loopBg.style.opacity = '0';
+
           introVideo.play().catch(err => {
             console.log("Play failed: ", err);
           });
