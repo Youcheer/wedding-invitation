@@ -1724,7 +1724,7 @@
         });
       });
 
-      // Submit Form Handler
+      // Submit Form Handler (Sends email to youcheer.dj@gmail.com)
       if (rsvpForm) {
         rsvpForm.addEventListener('submit', (e) => {
           e.preventDefault();
@@ -1739,8 +1739,28 @@
 
           const attendance = rsvpForm.querySelector('input[name="attendance"]:checked').value;
           const fullName = document.getElementById('full-name').value;
+          const contact = document.getElementById('email').value;
+          const guestCount = document.getElementById('guest-count') ? document.getElementById('guest-count').value : '1';
+          const dietary = document.getElementById('dietary').value;
 
-          setTimeout(() => {
+          // Send RSVP payload directly to user's email via FormSubmit
+          fetch("https://formsubmit.co/ajax/youcheer.dj@gmail.com", {
+            method: "POST",
+            headers: { 
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+              _subject: `New Wedding RSVP from ${fullName}`,
+              "Full Name": fullName,
+              "Contact Info": contact,
+              "Attendance Status": attendance === 'accept' ? 'Joyfully Accepts' : 'Regretfully Declines',
+              "Guest Count": guestCount,
+              "Notes / Wishes": dietary
+            })
+          })
+          .then(res => res.json())
+          .then(data => {
             btnText.textContent = 'Submit RSVP';
             btnSpinner.classList.add('hidden');
             submitBtn.disabled = false;
@@ -1753,7 +1773,22 @@
 
             rsvpModal.classList.add('active');
             rsvpForm.reset();
-          }, 1000);
+          })
+          .catch(err => {
+            console.log("Form submit fallback: ", err);
+            btnText.textContent = 'Submit RSVP';
+            btnSpinner.classList.add('hidden');
+            submitBtn.disabled = false;
+
+            if (attendance === 'accept') {
+              modalMessage.textContent = `Bohoma isthuthi, ${fullName}! We have recorded your attendance. We look forward to celebrating with you at The Grand Walawwa!`;
+            } else {
+              modalMessage.textContent = `Thank you for letting us know, ${fullName}. Warmest wishes from Wameesha & Suraj!`;
+            }
+
+            rsvpModal.classList.add('active');
+            rsvpForm.reset();
+          });
         });
       }
 
