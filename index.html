@@ -16,23 +16,26 @@
        1. DESIGN SYSTEM & CSS VARIABLES
        ========================================================================== */
     :root {
-      --bg-color: #fdfaf6;
-      --bg-card: #ffffff;
-      --bg-card-alt: #fcf8f4;
+      --bg-color: #120c1f;
+      --bg-card: rgba(28, 18, 42, 0.75);
+      --bg-card-alt: rgba(38, 24, 56, 0.7);
       
-      --text-main: #5a4b41;
-      --text-muted: #8c7a6e;
-      --text-light: #ab9c90;
+      --text-main: #ffffff;
+      --text-muted: #f3e5f5;
+      --text-light: #e0d0e8;
       
-      --accent-blush: #e8c5c8;
-      --accent-peach: #f4c2c2;
-      --accent-blush-dark: #d89fa3;
-      --accent-gold: #c5a059;
-      --accent-gold-light: #f5eaae;
+      --accent-vibrant-pink: #ff69b4;
+      --accent-bright-orange: #ff8c00;
+      --accent-candlelight-gold: #ffdf00;
+      --accent-blush: #ff69b4;
+      --accent-peach: #ff8c00;
+      --accent-blush-dark: #e60073;
+      --accent-gold: #ffdf00;
+      --accent-gold-light: #fff3a0;
       --accent-sage: #91a08d;
       
-      --border-gold: rgba(197, 160, 89, 0.3);
-      --border-soft: rgba(90, 75, 65, 0.08);
+      --border-gold: rgba(255, 223, 0, 0.4);
+      --border-soft: rgba(255, 255, 255, 0.12);
       
       --shadow-sm: 0 4px 15px rgba(90, 75, 65, 0.04);
       --shadow-md: 0 10px 30px rgba(90, 75, 65, 0.08);
@@ -454,7 +457,7 @@
     .hero-video-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(253, 250, 246, 0.3) 0%, rgba(249, 243, 236, 0.45) 100%);
+      background: linear-gradient(180deg, rgba(18, 12, 31, 0.5) 0%, rgba(10, 6, 18, 0.75) 100%);
       z-index: 2;
       pointer-events: none;
     }
@@ -464,12 +467,12 @@
       width: 100%;
       margin: 0 auto;
       padding: 40px 20px;
-      background: rgba(255, 255, 255, 0.88);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: rgba(20, 14, 32, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border: 1px solid var(--border-gold);
       border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-lg);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
       position: relative;
       z-index: 10;
     }
@@ -1313,13 +1316,13 @@
     <div class="video-container">
       <!-- Looping background video -->
       <video class="intro-loop-bg" autoplay loop muted playsinline>
-        <source src="Historic_colonial_mansion_waterc…_202609060948.mp4" type="video/mp4">
+        <source src="NEW_WALAWWA_VIDEO.mp4" type="video/mp4">
       </video>
       <div class="intro-loop-overlay" id="intro-loop-overlay"></div>
 
       <!-- Main intro video -->
       <video id="intro-video" playsinline muted>
-        <source src="Watercolor_doors_opening_to_garden_202609060900.mp4" type="video/mp4">
+        <source src="NEW_DOOR_VIDEO.mp4" type="video/mp4">
         Your browser does not support video play.
       </video>
       
@@ -1369,7 +1372,7 @@
     <section id="hero" class="hero-section">
       <!-- Background Video for Hero Section -->
       <video class="hero-bg-video" autoplay loop muted playsinline>
-        <source src="Historic_colonial_mansion_waterc…_202609060948.mp4" type="video/mp4">
+        <source src="NEW_WALAWWA_VIDEO.mp4" type="video/mp4">
       </video>
       <div class="hero-video-overlay"></div>
 
@@ -1681,12 +1684,12 @@
           this.particles = [];
           this.particleCount = window.innerWidth < 768 ? 45 : 90;
           
-          // Hex Color Palette: Peach/Blush Pink (#f4c2c2, #e8c5c8), Soft Gold (#f5eaae), Warm White (#fdfaf6)
+          // Hex Color Palette: Vibrant Pink (#ff69b4), Bright Orange (#ff8c00), Pure White (#ffffff), Warm Candlelight Gold (#ffdf00)
           this.colors = [
-            'rgba(244, 194, 194, ', // Peach Pink #f4c2c2
-            'rgba(232, 197, 200, ', // Blush Pink #e8c5c8
-            'rgba(245, 234, 174, ', // Soft Gold #f5eaae
-            'rgba(253, 250, 246, '  // Warm White #fdfaf6
+            'rgba(255, 105, 180, ', // Vibrant Pink #ff69b4
+            'rgba(255, 140, 0, ',   // Bright Orange #ff8c00
+            'rgba(255, 255, 255, ', // Pure White #ffffff
+            'rgba(255, 223, 0, '    // Warm Candlelight Gold #ffdf00
           ];
 
           this.init();
